@@ -194,4 +194,4 @@ Current plans include:
 
 > By asking that your rights to push code to production were automagically removed.
 
-But seriously, this is how we do it in [Java-land](http://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation).
+But seriously, this is how we do it in [Java-land](https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html).
