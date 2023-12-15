@@ -1,11 +1,11 @@
-var comparisons = ["NotEquals", "Equals", "LessThan", "GreaterThan", "Includes"]
+let comparisons = ["NotEquals", "Equals", "LessThan", "GreaterThan", "Includes"];
 
-module.exports = function (query) {
+export default function (query) {
 
-    var {findQuery, whereQuery} = splitQuery(query);
+    let {findQuery, whereQuery} = splitQuery(query);
 
-    var find = generateFind(findQuery);
-    var where = generateWhere(whereQuery);
+    let find = generateFind(findQuery);
+    let where = generateWhere(whereQuery);
 
     return {
         find,
@@ -14,10 +14,10 @@ module.exports = function (query) {
 };
 
 function splitQuery(query) {
-    var parts = query.split('Where');
+    let parts = query.split('Where');
 
-    var findQuery = parts[0].substring(4);
-    var whereQuery = parts[1];
+    let findQuery = parts[0].substring(4);
+    let whereQuery = parts[1];
 
     return {
         findQuery,
@@ -28,10 +28,10 @@ function splitQuery(query) {
 function generateFind(findQuery) {
     if (findQuery == '') return [];
 
-    var parts = findQuery.split('And');
+    let parts = findQuery.split('And');
 
     return parts.map(part => {
-        var [prop, name] = part.split('As');
+        let [prop, name] = part.split('As');
 
         prop = convertBackToCamelCase(prop);
 
@@ -48,11 +48,11 @@ function generateWhere(whereQuery) {
         return [];
     }
 
-    var parts = whereQuery.split('And');
+    let parts = whereQuery.split('And');
 
     return parts.map(part => {
-        var comparison = comparisons.find(c => part.includes(c));
-        var split = part.split(comparison);
+        let comparison = comparisons.find(c => part.includes(c));
+        let split = part.split(comparison);
 
         return {
             property: convertBackToCamelCase(split[0]),

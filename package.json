@@ -4,6 +4,7 @@
   "description": "",
   "author": "Mats Krüger Svensson",
   "license": "MIT",
+  "type": "module",
   "devDependencies": {
     "5to6-codemod": "^1.8.0",
     "benchmark": "^2.1.1",

@@ -1,7 +1,6 @@
-var assert = require('assert');
-var Benchmark = require('benchmark');
-
-var declaraoids = require('../src/declaraoids');
+import assert from 'assert';
+import Benchmark from 'benchmark';
+import declaraoids from '../src/declaraoids';
 
 describe('Speed comparison', () => { // remove skip to include speed tests
 
@@ -33,28 +32,28 @@ describe('Speed comparison', () => { // remove skip to include speed tests
     function completeFunction(size) {
         return function() {
             console.log("Result with list of " + size + " items");
-            for (var i = 0; i < this.length; i++) {
+            for (let i = 0; i < this.length; i++) {
                 console.log(this[i].toString())
             }
 
             console.log('Fastest is ' + this.filter('fastest').map('name'));
-        }
+        };
     }
 
     describe('Check that they return equal', () => {
         it('Simple query', () => {
-            var data = generateData(1000);
+            let data = generateData(1000);
 
-            var filterMap = simpleFilterMap(data);
-            var found = simpleFinder(data);
+            let filterMap = simpleFilterMap(data);
+            let found = simpleFinder(data);
 
             assert.deepEqual(filterMap, found);
         });
         it('Advanced query', () => {
-            var data = generateData(1000);
+            let data = generateData(1000);
 
-            var filterMap = advancedFilterMap(data);
-            var found = advancedFinder(data);
+            let filterMap = advancedFilterMap(data);
+            let found = advancedFinder(data);
 
             assert.deepEqual(filterMap, found);
         });
@@ -68,8 +67,8 @@ describe('Speed comparison', () => { // remove skip to include speed tests
         simpleQuery(100000);
 
         function simpleQuery(size) {
-            var data = generateData(size);
-            var suite = new Benchmark.Suite;
+            let data = generateData(size);
+            let suite = new Benchmark.Suite;
 
             suite
                 .add('Simple filter&map', function () {
@@ -92,10 +91,10 @@ describe('Speed comparison', () => { // remove skip to include speed tests
         advancedQuery(100000);
 
         function advancedQuery(size) {
-            var data = generateData(size);
-            var suite = new Benchmark.Suite;
+            let data = generateData(size);
+            let suite = new Benchmark.Suite;
 
-            var cachedFinder = declaraoids.findNameAndNested_Nested2AsCustomWhereAgeGreaterThanXAndNested_Nested3LessThanY;
+            let cachedFinder = declaraoids.findNameAndNested_Nested2AsCustomWhereAgeGreaterThanXAndNested_Nested3LessThanY;
 
             suite
                 .add('Advanced filter&map', function () {
@@ -115,9 +114,9 @@ describe('Speed comparison', () => { // remove skip to include speed tests
 });
 
 function generateData(size) {
-    var data = [];
+    let data = [];
 
-    for (var j = 0; j < size; j++) {
+    for (let j = 0; j < size; j++) {
         data.push({
             name: "Name" + j,
             age: j,

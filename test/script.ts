@@ -1,4 +1,4 @@
-const declaraoids = require('../src/declaraoids');
+import declaraoids from '../src/declaraoids.js';
 
 const persons = [
     { name: "Fuyuko", age: 19, sex: "F", address: { city: "Ibaraki"} },

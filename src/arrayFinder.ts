@@ -1,6 +1,6 @@
-var declaraoids = require('./declaraoids');
+import declaraoids from './declaraoids';
 
-module.exports = (array) => {
+export default (array) => {
     return new Proxy(array, {
         get (target, property) {
             if (!property.startsWith('find')) {

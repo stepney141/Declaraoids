@@ -1,16 +1,16 @@
-var parser = require('./parser');
+import parser from './parser';
 
-module.exports = new Proxy({}, {
+export default new Proxy({}, {
     get (target, property) {
         return finder(property);
     }
 });
 
 function finder(query) {
-    var parsed = parser(query);
+    let parsed = parser(query);
 
-    var mapFunc = generateMapFunction(parsed);
-    var filterFunc = generateFilterFunction(parsed);
+    let mapFunc = generateMapFunction(parsed);
+    let filterFunc = generateFilterFunction(parsed);
 
     return (array, args) => {
         return array
@@ -29,7 +29,7 @@ function generateMapFunction(parsed) {
     }
 
     return e => {
-        var obj = {};
+        let obj = {};
         parsed.find.forEach(find => {
             obj[find.name] = findNested(e, find.prop);
         });
@@ -38,7 +38,7 @@ function generateMapFunction(parsed) {
 }
 
 
-var functions = {
+let functions = {
     equals: (value, compareWith) => value === compareWith,
     noteequals: (value, compareWith) => value !== compareWith,
     lessthan: (value, compareWith) => value < compareWith,
@@ -47,14 +47,14 @@ var functions = {
 };
 
 function generateFilterFunction(parsed) {
-    var filters = [];
+    let filters = [];
 
     parsed.where.forEach(where => {
-        var func = functions[where.comparison];
+        let func = functions[where.comparison];
 
         filters.push((e, args) => {
-            var value = findNested(e, where.property);
-            var compareWith = args[where.input];
+            let value = findNested(e, where.property);
+            let compareWith = args[where.input];
             return func(value, compareWith);
         })
     });
@@ -68,10 +68,10 @@ function findNested(start, path) {
         return start[path];
     }
 
-    var properties = path.split('_');
+    let properties = path.split('_');
 
-    var current = start;
-    for (var i = 0; i < properties.length; i++) {
+    let current = start;
+    for (let i = 0; i < properties.length; i++) {
         current = current[properties[i]];
     }
     return current;
