@@ -5,7 +5,12 @@
   "author": "Mats Krüger Svensson",
   "license": "MIT",
   "devDependencies": {
+    "5to6-codemod": "^1.8.0",
     "benchmark": "^2.1.1",
-    "mocha": "^3.1.2"
+    "jscodeshift": "^0.15.1",
+    "mocha": "^10.2.0",
+    "ts-migrate": "^0.1.35",
+    "tsx": "^4.6.2",
+    "typescript": "^5.3.3"
   }
 }
